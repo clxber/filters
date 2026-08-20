@@ -1,0 +1,87 @@
+name: Collect and Split Proxy Lists (China only)
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download latest proxy files
+        run: |
+          FILES=("http.txt" "https.txt" "socks4.txt" "socks5.txt")
+          for file in "${FILES[@]}"; do
+            curl -s -o "$file" "https://raw.githubusercontent.com/zloi-user/hideip.me/main/$file"
+          done
+
+      - name: Filter China proxies and split by protocol
+        run: |
+          python3 << 'EOF'
+          import os
+          from collections import defaultdict
+
+          proto_map = {
+              'http.txt': 'http',
+              'https.txt': 'https',
+              'socks4.txt': 'socks4',
+              'socks5.txt': 'socks5',
+          }
+
+          proxy_protos = defaultdict(set)
+          proxy_country = {}
+
+          for filename, proto in proto_map.items():
+              if not os.path.exists(filename):
+                  continue
+              with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
+                  for line in f:
+                      line = line.strip()
+                      if not line:
+                          continue
+                      parts = line.split(':')
+                      if len(parts) >= 2:
+                          ip_port = f"{parts[0]}:{parts[1]}"
+                          country = parts[2] if len(parts) >= 3 else None
+                          if country:
+                              proxy_country[ip_port] = country
+                          proxy_protos[ip_port].add(proto)
+
+          china_proxies = {
+              ip_port: protos for ip_port, protos in proxy_protos.items()
+              if proxy_country.get(ip_port) == 'China'
+          }
+
+          proto_sets = {proto: set() for proto in proto_map.values()}
+          for ip_port, protos in china_proxies.items():
+              for proto in protos:
+                  proto_sets[proto].add(ip_port)
+
+          for proto, ip_set in proto_sets.items():
+              for filename, p in proto_map.items():
+                  if p == proto:
+                      with open(filename, 'w', encoding='utf-8') as f:
+                          for ip_port in sorted(ip_set):
+                              f.write(f"{ip_port}\n")
+                      break
+
+          print(f"处理完成，共 {len(china_proxies)} 个 China 代理")
+          EOF
+
+      - name: Check for changes and commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No changes detected, skipping commit."
+          else
+            git add .
+            git commit -m "Auto-update proxy lists (China only) at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+            git push
+          fi
