@@ -12,7 +12,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Download latest proxy files
         run: |
@@ -72,16 +72,21 @@ jobs:
                       break
 
           print(f"处理完成，共 {len(china_proxies)} 个 China 代理")
+          for proto in proto_sets:
+              print(f"{proto.upper()}: {len(proto_sets[proto])} 个")
           EOF
+
+      - name: List generated files (for debugging)
+        run: ls -la *.txt
 
       - name: Check for changes and commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet; then
-            echo "No changes detected, skipping commit."
+          git add -f *.txt
+          if git diff --staged --quiet; then
+            git commit --allow-empty -m "No proxy updates, but keep files"
           else
-            git add .
             git commit -m "Auto-update proxy lists (China only) at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-            git push
           fi
+          git push
