@@ -2,7 +2,7 @@ name: Collect and Merge Proxy Lists (China only, cumulative)
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/10 * * * *'   # 每10分钟运行一次
   workflow_dispatch:
 
 jobs:
@@ -40,6 +40,7 @@ jobs:
               'socks5.txt': 'socks5',
           }
 
+          # 读取本地已有代理（格式：IP:PORT:Country）
           existing_proxies = {proto: set() for proto in proto_map.values()}
           for filename, proto in proto_map.items():
               if os.path.exists(filename):
@@ -49,7 +50,10 @@ jobs:
                           if line:
                               existing_proxies[proto].add(line)
 
+          # 解析下载的新文件，提取 China 代理（同时保存国家信息）
           new_proxies = {proto: set() for proto in proto_map.values()}
+          proxy_country = {}  # key: IP:PORT, value: Country
+
           for filename, proto in proto_map.items():
               new_filename = f"new_{filename}"
               if not os.path.exists(new_filename):
@@ -66,21 +70,27 @@ jobs:
                           country = parts[2] if len(parts) >= 3 else None
                           if country == 'China':
                               new_proxies[proto].add(ip_port)
+                              proxy_country[ip_port] = country  # 记录国家
 
+          # 合并现有 + 新代理（去重），保留国家信息
           merged_proxies = {}
           for proto in proto_map.values():
-              merged = existing_proxies[proto].union(new_proxies[proto])
-              merged_proxies[proto] = merged
+              # 合并所有IP:PORT（去重）
+              merged_ips = existing_proxies[proto].union(new_proxies[proto])
+              merged_proxies[proto] = merged_ips
 
+          # 写回文件，每行格式：IP:PORT:China
           for proto, ip_set in merged_proxies.items():
               for filename, p in proto_map.items():
                   if p == proto:
                       with open(filename, 'w', encoding='utf-8') as f:
                           for ip_port in sorted(ip_set):
-                              f.write(f"{ip_port}\n")
+                              # 从proxy_country获取国家，如果不存在则默认为'China'
+                              country = proxy_country.get(ip_port, 'China')
+                              f.write(f"{ip_port}:{country}\n")
                       break
 
-          print("累积合并完成")
+          print("累积合并完成（国家已保留）")
           for proto in proto_map.values():
               print(f"{proto.upper()}: {len(merged_proxies[proto])} 个")
           EOF
