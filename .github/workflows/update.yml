@@ -2,7 +2,7 @@ name: Collect and Merge Proxy Lists (China only, cumulative)
 
 on:
   schedule:
-    - cron: '*/5 * * * *'          # 每5分钟运行一次
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -18,13 +18,19 @@ jobs:
         run: |
           FILES=("http.txt" "https.txt" "socks4.txt" "socks5.txt")
           for file in "${FILES[@]}"; do
-            curl -s -o "new_$file" "https://raw.githubusercontent.com/zloi-user/hideip.me/main/$file"
+            echo "Downloading $file ..."
+            curl -f -s -o "new_$file" "https://raw.githubusercontent.com/zloi-user/hideip.me/main/$file" || echo "Warning: Failed to download $file, creating empty file"
+            if [ ! -f "new_$file" ]; then
+              touch "new_$file"
+            fi
           done
+          ls -la new_*.txt
 
       - name: Merge new proxies with existing (cumulative, deduplicated)
         run: |
           python3 << 'EOF'
           import os
+          import sys
           from collections import defaultdict
 
           proto_map = {
@@ -34,7 +40,7 @@ jobs:
               'socks5.txt': 'socks5',
           }
 
-          # 1. 读取本地已有代理（如果存在），装入集合
+          # 1. 读取本地已有代理
           existing_proxies = {proto: set() for proto in proto_map.values()}
           for filename, proto in proto_map.items():
               if os.path.exists(filename):
@@ -46,11 +52,10 @@ jobs:
 
           # 2. 解析本次下载的新文件，提取 China 代理
           new_proxies = {proto: set() for proto in proto_map.values()}
-          proxy_country = {}  # 用于过滤 China
-
           for filename, proto in proto_map.items():
               new_filename = f"new_{filename}"
               if not os.path.exists(new_filename):
+                  print(f"Warning: {new_filename} not found, skipping")
                   continue
               with open(new_filename, 'r', encoding='utf-8', errors='ignore') as f:
                   for line in f:
@@ -64,13 +69,13 @@ jobs:
                           if country == 'China':
                               new_proxies[proto].add(ip_port)
 
-          # 3. 合并现有 + 新代理（去重）
+          # 3. 合并
           merged_proxies = {}
           for proto in proto_map.values():
               merged = existing_proxies[proto].union(new_proxies[proto])
               merged_proxies[proto] = merged
 
-          # 4. 写回文件（覆盖，但内容已是累积的）
+          # 4. 写回文件
           for proto, ip_set in merged_proxies.items():
               for filename, p in proto_map.items():
                   if p == proto:
@@ -89,8 +94,15 @@ jobs:
 
       - name: Check for changes and commit
         run: |
+          # ===== 关键修正：git config 用空格，不是点 =====
           git config user.name "github-actions[bot]"
-          git config.user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 确保有 .txt 文件，否则创建空文件
+          if ! ls *.txt 1> /dev/null 2>&1; then
+            touch http.txt https.txt socks4.txt socks5.txt
+          fi
+
           git add -f *.txt
           if git diff --staged --quiet; then
             git commit --allow-empty -m "No new proxies, but keep files"
