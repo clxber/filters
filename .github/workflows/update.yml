@@ -1,4 +1,4 @@
-name: Collect and Split Proxy Lists (China only)
+name: Collect and Merge Proxy Lists (China only, cumulative)
 
 on:
   schedule:
@@ -18,10 +18,10 @@ jobs:
         run: |
           FILES=("http.txt" "https.txt" "socks4.txt" "socks5.txt")
           for file in "${FILES[@]}"; do
-            curl -s -o "$file" "https://raw.githubusercontent.com/zloi-user/hideip.me/main/$file"
+            curl -s -o "new_$file" "https://raw.githubusercontent.com/zloi-user/hideip.me/main/$file"
           done
 
-      - name: Filter China proxies and split by protocol
+      - name: Merge new proxies with existing (cumulative, deduplicated)
         run: |
           python3 << 'EOF'
           import os
@@ -34,13 +34,25 @@ jobs:
               'socks5.txt': 'socks5',
           }
 
-          proxy_protos = defaultdict(set)
-          proxy_country = {}
+          # 1. 读取本地已有代理（如果存在），装入集合
+          existing_proxies = {proto: set() for proto in proto_map.values()}
+          for filename, proto in proto_map.items():
+              if os.path.exists(filename):
+                  with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
+                      for line in f:
+                          line = line.strip()
+                          if line:
+                              existing_proxies[proto].add(line)
+
+          # 2. 解析本次下载的新文件，提取 China 代理
+          new_proxies = {proto: set() for proto in proto_map.values()}
+          proxy_country = {}  # 用于过滤 China
 
           for filename, proto in proto_map.items():
-              if not os.path.exists(filename):
+              new_filename = f"new_{filename}"
+              if not os.path.exists(new_filename):
                   continue
-              with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
+              with open(new_filename, 'r', encoding='utf-8', errors='ignore') as f:
                   for line in f:
                       line = line.strip()
                       if not line:
@@ -49,21 +61,17 @@ jobs:
                       if len(parts) >= 2:
                           ip_port = f"{parts[0]}:{parts[1]}"
                           country = parts[2] if len(parts) >= 3 else None
-                          if country:
-                              proxy_country[ip_port] = country
-                          proxy_protos[ip_port].add(proto)
+                          if country == 'China':
+                              new_proxies[proto].add(ip_port)
 
-          china_proxies = {
-              ip_port: protos for ip_port, protos in proxy_protos.items()
-              if proxy_country.get(ip_port) == 'China'
-          }
+          # 3. 合并现有 + 新代理（去重）
+          merged_proxies = {}
+          for proto in proto_map.values():
+              merged = existing_proxies[proto].union(new_proxies[proto])
+              merged_proxies[proto] = merged
 
-          proto_sets = {proto: set() for proto in proto_map.values()}
-          for ip_port, protos in china_proxies.items():
-              for proto in protos:
-                  proto_sets[proto].add(ip_port)
-
-          for proto, ip_set in proto_sets.items():
+          # 4. 写回文件（覆盖，但内容已是累积的）
+          for proto, ip_set in merged_proxies.items():
               for filename, p in proto_map.items():
                   if p == proto:
                       with open(filename, 'w', encoding='utf-8') as f:
@@ -71,9 +79,9 @@ jobs:
                               f.write(f"{ip_port}\n")
                       break
 
-          print(f"处理完成，共 {len(china_proxies)} 个 China 代理")
-          for proto in proto_sets:
-              print(f"{proto.upper()}: {len(proto_sets[proto])} 个")
+          print("累积合并完成")
+          for proto in proto_map.values():
+              print(f"{proto.upper()}: {len(merged_proxies[proto])} 个")
           EOF
 
       - name: List generated files (for debugging)
@@ -85,8 +93,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -f *.txt
           if git diff --staged --quiet; then
-            git commit --allow-empty -m "No proxy updates, but keep files"
+            git commit --allow-empty -m "No new proxies, but keep files"
           else
-            git commit -m "Auto-update proxy lists (China only) at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+            git commit -m "Auto-update proxy lists (cumulative) at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           fi
           git push
