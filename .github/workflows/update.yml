@@ -2,7 +2,7 @@ name: Collect and Merge Proxy Lists (China only, cumulative)
 
 on:
   schedule:
-    - cron: '*/10 * * * *'   # 每10分钟运行一次
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -26,13 +26,13 @@ jobs:
           done
           ls -la new_*.txt
 
-      - name: Merge new proxies with existing (cumulative, deduplicated)
+      - name: Merge and deduplicate (IP:PORT as key, CRLF)
         run: |
           python3 << 'EOF'
           import os
           from collections import defaultdict
 
-          # ---------- 处理协议文件（http, https, socks4, socks5） ----------
+          # ----- 协议文件 -----
           proto_map = {
               'http.txt': 'http',
               'https.txt': 'https',
@@ -40,20 +40,22 @@ jobs:
               'socks5.txt': 'socks5',
           }
 
-          # 读取本地已有协议文件（格式 IP:PORT:Country）
-          existing_proxies = {proto: set() for proto in proto_map.values()}
+          # 读取已有文件，提取 IP:PORT（忽略可能的 :China 后缀）
+          existing_ips = {proto: set() for proto in proto_map.values()}
           for filename, proto in proto_map.items():
               if os.path.exists(filename):
                   with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
                       for line in f:
                           line = line.strip()
-                          if line:
-                              existing_proxies[proto].add(line)
+                          if not line:
+                              continue
+                          parts = line.split(':')
+                          if len(parts) >= 2:
+                              ip_port = f"{parts[0]}:{parts[1]}"
+                              existing_ips[proto].add(ip_port)
 
-          # 解析新下载的协议文件，提取 China 代理
-          new_proxies = {proto: set() for proto in proto_map.values()}
-          proxy_country = {}  # IP:PORT -> Country
-
+          # 解析新下载的文件，只保留 Country == 'China' 的 IP:PORT
+          new_ips = {proto: set() for proto in proto_map.values()}
           for filename, proto in proto_map.items():
               new_filename = f"new_{filename}"
               if not os.path.exists(new_filename):
@@ -68,36 +70,35 @@ jobs:
                           ip_port = f"{parts[0]}:{parts[1]}"
                           country = parts[2] if len(parts) >= 3 else None
                           if country == 'China':
-                              new_proxies[proto].add(ip_port)
-                              proxy_country[ip_port] = country
+                              new_ips[proto].add(ip_port)
 
-          # 合并协议文件（去重）
-          merged_proxies = {}
+          # 合并去重
+          merged_ips = {}
           for proto in proto_map.values():
-              merged = existing_proxies[proto].union(new_proxies[proto])
-              merged_proxies[proto] = merged
+              merged_ips[proto] = existing_ips[proto].union(new_ips[proto])
 
-          # 写回协议文件（格式 IP:PORT:China）
-          for proto, ip_set in merged_proxies.items():
+          # 写入文件，每行 IP:PORT:China，换行符为 CRLF
+          for proto, ip_set in merged_ips.items():
               for filename, p in proto_map.items():
                   if p == proto:
-                      with open(filename, 'w', encoding='utf-8') as f:
+                      with open(filename, 'w', encoding='utf-8', newline='\r\n') as f:
                           for ip_port in sorted(ip_set):
-                              country = proxy_country.get(ip_port, 'China')
-                              f.write(f"{ip_port}:{country}\n")
+                              f.write(f"{ip_port}:China\n")
                       break
 
-          # ---------- 处理 connect.txt ----------
-          # 读取本地已有 connect.txt（格式 IP:PORT:Country）
+          # ----- connect.txt -----
           existing_connect = set()
           if os.path.exists('connect.txt'):
               with open('connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
                   for line in f:
                       line = line.strip()
-                      if line:
-                          existing_connect.add(line)
+                      if not line:
+                          continue
+                      parts = line.split(':')
+                      if len(parts) >= 2:
+                          ip_port = f"{parts[0]}:{parts[1]}"
+                          existing_connect.add(ip_port)
 
-          # 解析新下载的 connect.txt，只保留 China 代理
           new_connect = set()
           if os.path.exists('new_connect.txt'):
               with open('new_connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
@@ -110,30 +111,28 @@ jobs:
                           ip_port = f"{parts[0]}:{parts[1]}"
                           country = parts[2] if len(parts) >= 3 else None
                           if country == 'China':
-                              new_connect.add(f"{ip_port}:China")
+                              new_connect.add(ip_port)
 
-          # 合并 connect（去重）
           merged_connect = existing_connect.union(new_connect)
 
-          # 写回 connect.txt
-          with open('connect.txt', 'w', encoding='utf-8') as f:
-              for line in sorted(merged_connect):
-                  f.write(line + '\n')
+          with open('connect.txt', 'w', encoding='utf-8', newline='\r\n') as f:
+              for ip_port in sorted(merged_connect):
+                  f.write(f"{ip_port}:China\n")
 
-          # 打印统计信息
-          print("协议文件合并完成")
+          # 打印统计
+          print("✅ 合并完成，所有行已规范为 IP:PORT:China (CRLF)")
           for proto in proto_map.values():
-              print(f"{proto.upper()}: {len(merged_proxies[proto])} 个")
+              print(f"{proto.upper()}: {len(merged_ips[proto])} 个")
           print(f"CONNECT: {len(merged_connect)} 个")
           EOF
 
       - name: Remove temporary new_*.txt files
         run: rm -f new_*.txt
 
-      - name: List final files (for debugging)
+      - name: List final files
         run: ls -la *.txt
 
-      - name: Check for changes and commit
+      - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
