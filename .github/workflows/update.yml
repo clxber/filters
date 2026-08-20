@@ -2,7 +2,7 @@ name: Collect and Merge Proxy Lists (China only, cumulative)
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/1 * * * *'
   workflow_dispatch:
 
 jobs:
