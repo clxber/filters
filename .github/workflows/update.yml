@@ -16,7 +16,7 @@ jobs:
 
       - name: Download latest proxy files
         run: |
-          FILES=("http.txt" "https.txt" "socks4.txt" "socks5.txt")
+          FILES=("http.txt" "https.txt" "socks4.txt" "socks5.txt" "connect.txt")
           for file in "${FILES[@]}"; do
             echo "Downloading $file ..."
             curl -f -s -o "new_$file" "https://raw.githubusercontent.com/zloi-user/hideip.me/main/$file" || echo "Warning: Failed to download $file, creating empty file"
@@ -30,9 +30,9 @@ jobs:
         run: |
           python3 << 'EOF'
           import os
-          import sys
           from collections import defaultdict
 
+          # ---------- 处理协议文件（http, https, socks4, socks5） ----------
           proto_map = {
               'http.txt': 'http',
               'https.txt': 'https',
@@ -40,7 +40,7 @@ jobs:
               'socks5.txt': 'socks5',
           }
 
-          # 读取本地已有代理（格式：IP:PORT:Country）
+          # 读取本地已有协议文件（格式 IP:PORT:Country）
           existing_proxies = {proto: set() for proto in proto_map.values()}
           for filename, proto in proto_map.items():
               if os.path.exists(filename):
@@ -50,14 +50,13 @@ jobs:
                           if line:
                               existing_proxies[proto].add(line)
 
-          # 解析下载的新文件，提取 China 代理（同时保存国家信息）
+          # 解析新下载的协议文件，提取 China 代理
           new_proxies = {proto: set() for proto in proto_map.values()}
-          proxy_country = {}  # key: IP:PORT, value: Country
+          proxy_country = {}  # IP:PORT -> Country
 
           for filename, proto in proto_map.items():
               new_filename = f"new_{filename}"
               if not os.path.exists(new_filename):
-                  print(f"Warning: {new_filename} not found, skipping")
                   continue
               with open(new_filename, 'r', encoding='utf-8', errors='ignore') as f:
                   for line in f:
@@ -70,29 +69,62 @@ jobs:
                           country = parts[2] if len(parts) >= 3 else None
                           if country == 'China':
                               new_proxies[proto].add(ip_port)
-                              proxy_country[ip_port] = country  # 记录国家
+                              proxy_country[ip_port] = country
 
-          # 合并现有 + 新代理（去重），保留国家信息
+          # 合并协议文件（去重）
           merged_proxies = {}
           for proto in proto_map.values():
-              # 合并所有IP:PORT（去重）
-              merged_ips = existing_proxies[proto].union(new_proxies[proto])
-              merged_proxies[proto] = merged_ips
+              merged = existing_proxies[proto].union(new_proxies[proto])
+              merged_proxies[proto] = merged
 
-          # 写回文件，每行格式：IP:PORT:China
+          # 写回协议文件（格式 IP:PORT:China）
           for proto, ip_set in merged_proxies.items():
               for filename, p in proto_map.items():
                   if p == proto:
                       with open(filename, 'w', encoding='utf-8') as f:
                           for ip_port in sorted(ip_set):
-                              # 从proxy_country获取国家，如果不存在则默认为'China'
                               country = proxy_country.get(ip_port, 'China')
                               f.write(f"{ip_port}:{country}\n")
                       break
 
-          print("累积合并完成（国家已保留）")
+          # ---------- 处理 connect.txt ----------
+          # 读取本地已有 connect.txt（格式 IP:PORT:Country）
+          existing_connect = set()
+          if os.path.exists('connect.txt'):
+              with open('connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
+                  for line in f:
+                      line = line.strip()
+                      if line:
+                          existing_connect.add(line)
+
+          # 解析新下载的 connect.txt，只保留 China 代理
+          new_connect = set()
+          if os.path.exists('new_connect.txt'):
+              with open('new_connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
+                  for line in f:
+                      line = line.strip()
+                      if not line:
+                          continue
+                      parts = line.split(':')
+                      if len(parts) >= 2:
+                          ip_port = f"{parts[0]}:{parts[1]}"
+                          country = parts[2] if len(parts) >= 3 else None
+                          if country == 'China':
+                              new_connect.add(f"{ip_port}:China")
+
+          # 合并 connect（去重）
+          merged_connect = existing_connect.union(new_connect)
+
+          # 写回 connect.txt
+          with open('connect.txt', 'w', encoding='utf-8') as f:
+              for line in sorted(merged_connect):
+                  f.write(line + '\n')
+
+          # 打印统计信息
+          print("协议文件合并完成")
           for proto in proto_map.values():
               print(f"{proto.upper()}: {len(merged_proxies[proto])} 个")
+          print(f"CONNECT: {len(merged_connect)} 个")
           EOF
 
       - name: Remove temporary new_*.txt files
@@ -107,7 +139,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           if ! ls *.txt 1> /dev/null 2>&1; then
-            touch http.txt https.txt socks4.txt socks5.txt
+            touch http.txt https.txt socks4.txt socks5.txt connect.txt
           fi
 
           git add -f *.txt
