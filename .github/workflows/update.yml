@@ -2,8 +2,8 @@ name: Collect and Merge Proxy Lists (China only, cumulative)
 
 on:
   schedule:
-    # 每小时整点触发，但避开 UTC 0 点（检测时间）
-    - cron: '0 1-22 * * *'
+    # 每小时整点触发，覆盖全天 24 小时
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
       - name: Ensure scripts directory exists
         run: mkdir -p scripts
 
-      # ★ 内联创建 collect_once.py 脚本
+      # ★ 内联创建 collect_once.py 脚本（同上）
       - name: Create collect_once.py script
         run: |
           cat > scripts/collect_once.py << 'EOF'
@@ -38,7 +38,6 @@ jobs:
               import urllib.request
               import sys
 
-              # 下载文件
               for filename in PROXY_FILES:
                   url = f"https://raw.githubusercontent.com/zloi-user/hideip.me/main/{filename}"
                   try:
@@ -49,7 +48,6 @@ jobs:
                       with open(f"new_{filename}", 'w') as f:
                           pass
 
-              # ----- 处理协议文件 -----
               proto_map = PROTOCOL_MAP
               existing_ips = {proto: set() for proto in proto_map.values()}
               for filename, proto in proto_map.items():
@@ -93,7 +91,6 @@ jobs:
                                   f.write(f"{ip_port}:China\n")
                           break
 
-              # ----- connect.txt -----
               existing_connect = set()
               if os.path.exists('connect.txt'):
                   with open('connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
@@ -125,7 +122,6 @@ jobs:
                   for ip_port in sorted(merged_connect):
                       f.write(f"{ip_port}:China\n")
 
-              # 清理临时文件
               for filename in PROXY_FILES:
                   if os.path.exists(f"new_{filename}"):
                       os.remove(f"new_{filename}")
@@ -140,12 +136,22 @@ jobs:
           EOF
           chmod +x scripts/collect_once.py
 
-      # ★ 核心：循环执行12次采集，每次间隔5分钟
+      # ★ 核心：循环采集 12 次，自动跳过 UTC 23:00~0:59
       - name: Run collection loop (12 times, 5 minutes interval)
         run: |
           for i in {1..12}; do
+            # ★ 检查当前小时，若为 23 或 0 则跳过采集（避让检测任务）
+            current_hour=$(date -u +%H)
+            if [ "$current_hour" -eq 23 ] || [ "$current_hour" -eq 0 ]; then
+              echo "===== Collection iteration $i skipped (hour=$current_hour UTC) to avoid conflict with detection job ====="
+              if [ $i -lt 12 ]; then
+                echo "Waiting 5 minutes before next check..."
+                sleep 300
+              fi
+              continue
+            fi
+
             echo "===== Collection iteration $i ====="
-            
             python3 scripts/collect_once.py || echo "Collect failed, continuing..."
             
             git config user.name "github-actions[bot]"
