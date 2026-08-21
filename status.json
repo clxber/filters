@@ -892,5 +892,353 @@
     "fail_days": 1,
     "last_date": "2026-08-21",
     "valid_10_flag": false
+  },
+  "https:203.3.112.2:6666": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks4:183.6.57.161:5678": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks4:223.75.121.218:12120": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks4:61.191.119.134:10800": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44001": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44009": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44008": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44019": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44038": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44041": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44052": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44055": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44066": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44069": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44049": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44051": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44078": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44089": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44108": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44114": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44121": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44123": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44122": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44124": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44127": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44125": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44135": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44136": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44148": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44142": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44162": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44167": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44176": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44177": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44173": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44189": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44199": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44201": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44190": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44202": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44206": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44215": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44216": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44225": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44231": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44232": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44247": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44244": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44242": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:223.99.197.190:11012": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45012": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45094": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:140.246.125.194:9099": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45163": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:216.106.179.216:49295": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:220.243.154.49:10000": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:223.254.141.102:6628": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:36.111.205.239:6666": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
   }
 }
