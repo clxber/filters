@@ -24,10 +24,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 先拉取远程最新更改，避免推送冲突
+          git pull --rebase origin main
+          
           git add *.txt daily_reports/ status.json valid_10days.txt
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Daily health check $(date -u '+%Y-%m-%d')"
-            git push
+            git push origin main
           fi
