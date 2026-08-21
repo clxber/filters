@@ -1,0 +1,800 @@
+{
+  "https:118.184.157.67:4443": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "https:117.82.138.100:1080": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "https:36.111.205.239:6666": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "https:47.111.179.99:19518": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks4:171.221.240.100:10800": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks4:58.18.39.58:10800": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks4:58.247.113.130:5678": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks4:58.33.109.114:4145": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks4:60.217.64.237:35292": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44004": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44007": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44014": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44005": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44006": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44021": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44015": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44017": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44022": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44020": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44023": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44025": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44026": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44027": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44029": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44030": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44033": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44034": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44036": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44032": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44044": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44035": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44053": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44037": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44039": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44071": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44080": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44073": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44064": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44077": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44087": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44085": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44088": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44097": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44095": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44092": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44098": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44103": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44102": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44101": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44105": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44107": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44112": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44110": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44111": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44117": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44116": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44132": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44130": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44128": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44120": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44146": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44137": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44156": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44151": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44150": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44138": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44153": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44159": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44179": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44164": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44180": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44181": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44158": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44208": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44195": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44211": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44197": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44204": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44212": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44217": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44220": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44221": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44228": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44245": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44239": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44235": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44234": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:202.95.15.6:1080": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:221.176.85.232:1080": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:47.76.170.223:1011": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44236": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44249": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:47.82.80.23:1011": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:36.33.1.106:54489": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:36.33.1.106:43681": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:112.64.135.45:8080": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:101.206.186.99:8080": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:113.249.101.133:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:113.108.242.106:8181": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:113.249.101.171:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:113.249.102.27:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:113.249.101.123:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:114.236.137.41:21000": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:113.249.103.136:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:113.249.102.192:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:113.249.101.105:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45120": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45170": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45053": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45047": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45068": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:219.151.177.52:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45208": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:219.148.171.178:9445": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:118.145.141.251:45232": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:183.6.115.212:19450": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:219.151.185.208:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:219.151.185.3:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:219.151.182.122:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:219.151.186.169:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:223.254.141.102:6601": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:223.254.141.102:6603": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:219.151.185.12:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:223.85.21.195:8080": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:223.254.141.102:6609": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:221.122.118.41:8011": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:221.217.49.129:9000": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:36.111.205.240:6666": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:36.147.78.166:443": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:59.36.210.211:13552": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:36.147.78.166:80": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:61.49.87.3:80": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:36.136.48.61:995": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  }
+}
