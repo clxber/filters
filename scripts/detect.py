@@ -20,8 +20,9 @@ CURL_TIMEOUT_MAX = 10
 TARGET_HTTP = 'http://myip.ipip.net'
 TARGET_HTTPS = 'https://myip.ipip.net'
 IP_REGEX = re.compile(r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b')
-MAX_WORKERS = 5   # 并发线程数
-KEEP_DAYS = 30    # 保留最近30天的报告
+MAX_WORKERS = 5                 # 并发线程数
+KEEP_REPORT_DAYS = 30           # 保留最近30天的报告
+KEEP_STATUS_DAYS = 60           # ★ 状态记录保留天数（失效IP超过60天未重新出现则删除）
 
 STATUS_FILE = 'status.json'
 REPORT_DIR = 'daily_reports'
@@ -164,7 +165,7 @@ def clean_old_reports(report_dir, keep_days):
     """删除 keep_days 天以前的报告文件"""
     if not os.path.exists(report_dir):
         return
-    cutoff = datetime.now(timezone.utc) - timedelta(days=keep_days)  # 使用 timezone.utc
+    cutoff = datetime.now(timezone.utc) - timedelta(days=keep_days)
     for filename in os.listdir(report_dir):
         if not filename.endswith('.txt'):
             continue
@@ -177,6 +178,31 @@ def clean_old_reports(report_dir, keep_days):
                 print(f"已删除旧报告: {filename}")
         except Exception as e:
             print(f"处理报告文件 {filename} 时出错: {e}")
+
+# ================= ★ 清理陈旧状态记录 =================
+
+def clean_stale_status(status, keep_days):
+    """
+    删除 status 中最后更新日期距今超过 keep_days 天的记录
+    （即该 IP 已从代理文件中消失超过 keep_days 天）
+    """
+    if not status:
+        return 0
+    today = datetime.now(timezone.utc)
+    to_delete = []
+    for key, val in status.items():
+        last_date_str = val.get('last_date')
+        if not last_date_str:
+            continue
+        try:
+            last_date = datetime.strptime(last_date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+            if (today - last_date).days > keep_days:
+                to_delete.append(key)
+        except Exception:
+            continue
+    for key in to_delete:
+        del status[key]
+    return len(to_delete)
 
 # ================= 主流程 =================
 
@@ -197,7 +223,6 @@ def ensure_dir(path):
 def main():
     ensure_dir(REPORT_DIR)
     status = load_status()
-    # ★ 使用 timezone.utc 兼容老版本 Python
     today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
     report_lines = [f"Daily Report - {today}"]
     report_lines.append("="*60)
@@ -357,7 +382,15 @@ def main():
         f.write('\r\n'.join(report_lines))
 
     # ★ 清理 30 天以前的旧报告
-    clean_old_reports(REPORT_DIR, KEEP_DAYS)
+    clean_old_reports(REPORT_DIR, KEEP_REPORT_DAYS)
+
+    # ★ 清理 60 天以前且已不在代理文件中的陈旧状态记录
+    stale_count = clean_stale_status(status, KEEP_STATUS_DAYS)
+    if stale_count > 0:
+        save_status(status)  # 有删除则重新保存
+        print(f"已删除 {stale_count} 条超过 {KEEP_STATUS_DAYS} 天未更新的陈旧状态记录")
+    else:
+        print("没有需要清理的陈旧状态记录")
 
     total = sum(len(v) for v in to_keep.values()) + sum(len(v) for v in to_remove.values())
     removed = sum(len(v) for v in to_remove.values())
