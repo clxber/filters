@@ -164,14 +164,13 @@ def clean_old_reports(report_dir, keep_days):
     """删除 keep_days 天以前的报告文件"""
     if not os.path.exists(report_dir):
         return
-    cutoff = datetime.now(timezone.UTC) - timedelta(days=keep_days)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=keep_days)  # 使用 timezone.utc
     for filename in os.listdir(report_dir):
         if not filename.endswith('.txt'):
             continue
         try:
-            # 文件名格式 YYYY-MM-DD.txt
             date_str = filename.split('.')[0]
-            file_date = datetime.strptime(date_str, '%Y-%m-%d').replace(tzinfo=timezone.UTC)
+            file_date = datetime.strptime(date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
             if file_date < cutoff:
                 file_path = os.path.join(report_dir, filename)
                 os.remove(file_path)
@@ -198,7 +197,8 @@ def ensure_dir(path):
 def main():
     ensure_dir(REPORT_DIR)
     status = load_status()
-    today = datetime.now(timezone.UTC).strftime('%Y-%m-%d')
+    # ★ 使用 timezone.utc 兼容老版本 Python
+    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
     report_lines = [f"Daily Report - {today}"]
     report_lines.append("="*60)
 
