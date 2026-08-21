@@ -2,11 +2,12 @@ name: Collect and Merge Proxy Lists (China only, cumulative)
 
 on:
   schedule:
-    - cron: '*/10 1-22 * * *'
+    # 每小时整点触发，但避开 UTC 0 点（检测时间）
+    - cron: '0 1-22 * * *'
   workflow_dispatch:
 
 jobs:
-  update:
+  collect:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -14,37 +15,61 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Download latest proxy files
-        run: |
-          FILES=("http.txt" "https.txt" "socks4.txt" "socks5.txt" "connect.txt")
-          for file in "${FILES[@]}"; do
-            echo "Downloading $file ..."
-            curl -f -s -o "new_$file" "https://raw.githubusercontent.com/zloi-user/hideip.me/main/$file" || echo "Warning: Failed to download $file, creating empty file"
-            if [ ! -f "new_$file" ]; then
-              touch "new_$file"
-            fi
-          done
-          ls -la new_*.txt
+      - name: Ensure scripts directory exists
+        run: mkdir -p scripts
 
-      - name: Merge and deduplicate (IP:PORT as key, CRLF)
+      # ★ 内联创建 collect_once.py 脚本
+      - name: Create collect_once.py script
         run: |
-          python3 << 'EOF'
+          cat > scripts/collect_once.py << 'EOF'
+          #!/usr/bin/env python3
           import os
           from collections import defaultdict
 
-          # ----- 协议文件 -----
-          proto_map = {
+          PROXY_FILES = ['http.txt', 'https.txt', 'socks4.txt', 'socks5.txt', 'connect.txt']
+          PROTOCOL_MAP = {
               'http.txt': 'http',
               'https.txt': 'https',
               'socks4.txt': 'socks4',
               'socks5.txt': 'socks5',
           }
 
-          # 读取已有文件，提取 IP:PORT（忽略可能的 :China 后缀）
-          existing_ips = {proto: set() for proto in proto_map.values()}
-          for filename, proto in proto_map.items():
-              if os.path.exists(filename):
-                  with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
+          def download_and_merge():
+              import urllib.request
+              import sys
+
+              # 下载文件
+              for filename in PROXY_FILES:
+                  url = f"https://raw.githubusercontent.com/zloi-user/hideip.me/main/{filename}"
+                  try:
+                      urllib.request.urlretrieve(url, f"new_{filename}")
+                      print(f"Downloaded {filename}")
+                  except Exception as e:
+                      print(f"Failed to download {filename}: {e}")
+                      with open(f"new_{filename}", 'w') as f:
+                          pass
+
+              # ----- 处理协议文件 -----
+              proto_map = PROTOCOL_MAP
+              existing_ips = {proto: set() for proto in proto_map.values()}
+              for filename, proto in proto_map.items():
+                  if os.path.exists(filename):
+                      with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
+                          for line in f:
+                              line = line.strip()
+                              if not line:
+                                  continue
+                              parts = line.split(':')
+                              if len(parts) >= 2:
+                                  ip_port = f"{parts[0]}:{parts[1]}"
+                                  existing_ips[proto].add(ip_port)
+
+              new_ips = {proto: set() for proto in proto_map.values()}
+              for filename, proto in proto_map.items():
+                  new_filename = f"new_{filename}"
+                  if not os.path.exists(new_filename):
+                      continue
+                  with open(new_filename, 'r', encoding='utf-8', errors='ignore') as f:
                       for line in f:
                           line = line.strip()
                           if not line:
@@ -52,99 +77,91 @@ jobs:
                           parts = line.split(':')
                           if len(parts) >= 2:
                               ip_port = f"{parts[0]}:{parts[1]}"
-                              existing_ips[proto].add(ip_port)
+                              country = parts[2] if len(parts) >= 3 else None
+                              if country == 'China':
+                                  new_ips[proto].add(ip_port)
 
-          # 解析新下载的文件，只保留 Country == 'China' 的 IP:PORT
-          new_ips = {proto: set() for proto in proto_map.values()}
-          for filename, proto in proto_map.items():
-              new_filename = f"new_{filename}"
-              if not os.path.exists(new_filename):
-                  continue
-              with open(new_filename, 'r', encoding='utf-8', errors='ignore') as f:
-                  for line in f:
-                      line = line.strip()
-                      if not line:
-                          continue
-                      parts = line.split(':')
-                      if len(parts) >= 2:
-                          ip_port = f"{parts[0]}:{parts[1]}"
-                          country = parts[2] if len(parts) >= 3 else None
-                          if country == 'China':
-                              new_ips[proto].add(ip_port)
+              merged_ips = {}
+              for proto in proto_map.values():
+                  merged_ips[proto] = existing_ips[proto].union(new_ips[proto])
 
-          # 合并去重
-          merged_ips = {}
-          for proto in proto_map.values():
-              merged_ips[proto] = existing_ips[proto].union(new_ips[proto])
+              for proto, ip_set in merged_ips.items():
+                  for filename, p in proto_map.items():
+                      if p == proto:
+                          with open(filename, 'w', encoding='utf-8', newline='\r\n') as f:
+                              for ip_port in sorted(ip_set):
+                                  f.write(f"{ip_port}:China\n")
+                          break
 
-          # 写入文件，每行 IP:PORT:China，换行符为 CRLF
-          for proto, ip_set in merged_ips.items():
-              for filename, p in proto_map.items():
-                  if p == proto:
-                      with open(filename, 'w', encoding='utf-8', newline='\r\n') as f:
-                          for ip_port in sorted(ip_set):
-                              f.write(f"{ip_port}:China\n")
-                      break
+              # ----- connect.txt -----
+              existing_connect = set()
+              if os.path.exists('connect.txt'):
+                  with open('connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
+                      for line in f:
+                          line = line.strip()
+                          if not line:
+                              continue
+                          parts = line.split(':')
+                          if len(parts) >= 2:
+                              ip_port = f"{parts[0]}:{parts[1]}"
+                              existing_connect.add(ip_port)
 
-          # ----- connect.txt -----
-          existing_connect = set()
-          if os.path.exists('connect.txt'):
-              with open('connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
-                  for line in f:
-                      line = line.strip()
-                      if not line:
-                          continue
-                      parts = line.split(':')
-                      if len(parts) >= 2:
-                          ip_port = f"{parts[0]}:{parts[1]}"
-                          existing_connect.add(ip_port)
+              new_connect = set()
+              if os.path.exists('new_connect.txt'):
+                  with open('new_connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
+                      for line in f:
+                          line = line.strip()
+                          if not line:
+                              continue
+                          parts = line.split(':')
+                          if len(parts) >= 2:
+                              ip_port = f"{parts[0]}:{parts[1]}"
+                              country = parts[2] if len(parts) >= 3 else None
+                              if country == 'China':
+                                  new_connect.add(ip_port)
 
-          new_connect = set()
-          if os.path.exists('new_connect.txt'):
-              with open('new_connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
-                  for line in f:
-                      line = line.strip()
-                      if not line:
-                          continue
-                      parts = line.split(':')
-                      if len(parts) >= 2:
-                          ip_port = f"{parts[0]}:{parts[1]}"
-                          country = parts[2] if len(parts) >= 3 else None
-                          if country == 'China':
-                              new_connect.add(ip_port)
+              merged_connect = existing_connect.union(new_connect)
+              with open('connect.txt', 'w', encoding='utf-8', newline='\r\n') as f:
+                  for ip_port in sorted(merged_connect):
+                      f.write(f"{ip_port}:China\n")
 
-          merged_connect = existing_connect.union(new_connect)
+              # 清理临时文件
+              for filename in PROXY_FILES:
+                  if os.path.exists(f"new_{filename}"):
+                      os.remove(f"new_{filename}")
 
-          with open('connect.txt', 'w', encoding='utf-8', newline='\r\n') as f:
-              for ip_port in sorted(merged_connect):
-                  f.write(f"{ip_port}:China\n")
+              print("✅ 合并完成")
+              for proto in proto_map.values():
+                  print(f"{proto.upper()}: {len(merged_ips[proto])} 个")
+              print(f"CONNECT: {len(merged_connect)} 个")
 
-          # 打印统计
-          print("✅ 合并完成，所有行已规范为 IP:PORT:China (CRLF)")
-          for proto in proto_map.values():
-              print(f"{proto.upper()}: {len(merged_ips[proto])} 个")
-          print(f"CONNECT: {len(merged_connect)} 个")
+          if __name__ == '__main__':
+              download_and_merge()
           EOF
+          chmod +x scripts/collect_once.py
 
-      - name: Remove temporary new_*.txt files
-        run: rm -f new_*.txt
-
-      - name: List final files
-        run: ls -la *.txt
-
-      - name: Commit changes
+      # ★ 核心：循环执行12次采集，每次间隔5分钟
+      - name: Run collection loop (12 times, 5 minutes interval)
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          if ! ls *.txt 1> /dev/null 2>&1; then
-            touch http.txt https.txt socks4.txt socks5.txt connect.txt
-          fi
-
-          git add -f *.txt
-          if git diff --staged --quiet; then
-            git commit --allow-empty -m "No new proxies, but keep files"
-          else
-            git commit -m "Auto-update proxy lists (cumulative) at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          fi
-          git push
+          for i in {1..12}; do
+            echo "===== Collection iteration $i ====="
+            
+            python3 scripts/collect_once.py || echo "Collect failed, continuing..."
+            
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            
+            git add -f *.txt
+            
+            if git diff --staged --quiet; then
+              echo "No changes to commit"
+            else
+              git commit -m "Auto-update proxy lists (iteration $i) at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+              git push origin main
+            fi
+            
+            if [ $i -lt 12 ]; then
+              echo "Waiting 5 minutes before next iteration..."
+              sleep 300
+            fi
+          done
