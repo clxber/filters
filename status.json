@@ -796,5 +796,101 @@
     "fail_days": 1,
     "last_date": "2026-08-21",
     "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44013": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44081": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44083": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44100": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44113": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44144": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44172": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44186": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44170": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44188": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44218": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44229": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "socks5:118.145.141.251:44238": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:113.249.101.125:18255": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:180.112.239.140:1080": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
+  },
+  "connect:223.254.141.102:6621": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-21",
+    "valid_10_flag": false
   }
 }
