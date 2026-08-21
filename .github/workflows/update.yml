@@ -36,7 +36,6 @@ jobs:
               import urllib.request
               import sys
 
-              # 下载文件
               for filename in PROXY_FILES:
                   url = f"https://raw.githubusercontent.com/zloi-user/hideip.me/main/{filename}"
                   try:
@@ -47,7 +46,6 @@ jobs:
                       with open(f"new_{filename}", 'w') as f:
                           pass
 
-              # ----- 处理协议文件 -----
               proto_map = PROTOCOL_MAP
               existing_ips = {proto: set() for proto in proto_map.values()}
               for filename, proto in proto_map.items():
@@ -91,7 +89,6 @@ jobs:
                                   f.write(f"{ip_port}:China\n")
                           break
 
-              # ----- connect.txt -----
               existing_connect = set()
               if os.path.exists('connect.txt'):
                   with open('connect.txt', 'r', encoding='utf-8', errors='ignore') as f:
@@ -123,7 +120,6 @@ jobs:
                   for ip_port in sorted(merged_connect):
                       f.write(f"{ip_port}:China\n")
 
-              # 清理临时文件
               for filename in PROXY_FILES:
                   if os.path.exists(f"new_{filename}"):
                       os.remove(f"new_{filename}")
@@ -142,7 +138,6 @@ jobs:
         run: |
           for i in {1..12}; do
             current_hour=$(date -u +%H)
-            # ★ 跳过 UTC 23 点和 0 点（共2小时），避免与检测冲突
             if [ "$current_hour" -eq 23 ] || [ "$current_hour" -eq 0 ]; then
               echo "===== Collection iteration $i skipped (hour=$current_hour UTC) to avoid conflict with detection job ====="
               if [ $i -lt 12 ]; then
@@ -153,14 +148,16 @@ jobs:
             fi
 
             echo "===== Collection iteration $i ====="
-            python3 scripts/collect_once.py || echo "Collect failed, continuing..."
-            
+
+            # ★ 先拉取远程最新（工作区干净）
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            
-            # ★ 先拉取远程最新，避免冲突
             git pull --rebase origin main || echo "Pull failed, but continuing..."
+
+            # ★ 执行采集
+            python3 scripts/collect_once.py || echo "Collect failed, continuing..."
             
+            # ★ 提交并推送变更
             git add -f *.txt
             
             if git diff --staged --quiet; then
