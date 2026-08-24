@@ -2248,5 +2248,23 @@
     "fail_days": 1,
     "last_date": "2026-08-24",
     "valid_10_flag": false
+  },
+  "https:223.254.141.102:6621": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-24",
+    "valid_10_flag": false
+  },
+  "socks4:106.110.146.129:8989": {
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-08-24",
+    "valid_10_flag": false
+  },
+  "connect:223.254.141.102:6642": {
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-08-24",
+    "valid_10_flag": false
   }
 }
