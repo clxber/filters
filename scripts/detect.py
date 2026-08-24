@@ -20,7 +20,7 @@ CURL_TIMEOUT_MAX = 10
 TARGET_HTTP = 'http://myip.ipip.net'
 TARGET_HTTPS = 'https://myip.ipip.net'
 IP_REGEX = re.compile(r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b')
-MAX_WORKERS = 5                 # 并发线程数
+MAX_WORKERS = 20                 # 并发线程数
 KEEP_REPORT_DAYS = 30           # 保留最近30天的报告
 KEEP_STATUS_DAYS = 60           # ★ 状态记录保留天数（失效IP超过60天未重新出现则删除）
 
