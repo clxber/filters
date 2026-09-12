@@ -36,9 +36,9 @@
     "valid_10_flag": false
   },
   "socks4:58.247.113.130:5678": {
-    "success_days": 0,
-    "fail_days": 1,
-    "last_date": "2026-09-11",
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:58.33.109.114:4145": {
@@ -49,8 +49,8 @@
   },
   "socks4:60.217.64.237:35292": {
     "success_days": 0,
-    "fail_days": 4,
-    "last_date": "2026-09-11",
+    "fail_days": 5,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:118.145.141.251:44004": {
@@ -614,7 +614,7 @@
   "connect:114.236.137.41:21000": {
     "success_days": 10,
     "fail_days": 0,
-    "last_date": "2026-09-11",
+    "last_date": "2026-09-12",
     "valid_10_flag": true
   },
   "connect:113.249.103.136:18255": {
@@ -738,9 +738,9 @@
     "valid_10_flag": false
   },
   "connect:223.85.21.195:8080": {
-    "success_days": 2,
+    "success_days": 3,
     "fail_days": 0,
-    "last_date": "2026-09-11",
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:223.254.141.102:6609": {
@@ -768,9 +768,9 @@
     "valid_10_flag": false
   },
   "connect:36.147.78.166:443": {
-    "success_days": 5,
+    "success_days": 6,
     "fail_days": 0,
-    "last_date": "2026-09-11",
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:59.36.210.211:13552": {
@@ -1266,9 +1266,9 @@
     "valid_10_flag": false
   },
   "socks4:116.232.80.133:1080": {
-    "success_days": 1,
-    "fail_days": 0,
-    "last_date": "2026-09-11",
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:171.221.176.137:10800": {
@@ -1278,9 +1278,9 @@
     "valid_10_flag": false
   },
   "socks4:210.22.100.242:1080": {
-    "success_days": 1,
-    "fail_days": 0,
-    "last_date": "2026-09-11",
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:180.158.166.144:4145": {
@@ -1296,9 +1296,9 @@
     "valid_10_flag": false
   },
   "socks4:218.26.101.226:53813": {
-    "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "success_days": 1,
+    "fail_days": 0,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:220.167.89.10:10800": {
@@ -1680,9 +1680,9 @@
     "valid_10_flag": false
   },
   "connect:124.128.149.84:8090": {
-    "success_days": 1,
-    "fail_days": 0,
-    "last_date": "2026-09-11",
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:118.145.141.251:45244": {
@@ -1879,8 +1879,8 @@
   },
   "socks4:222.212.85.149:5678": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:49.82.52.204:8989": {
@@ -2192,7 +2192,7 @@
   "connect:101.251.204.174:8080": {
     "success_days": 10,
     "fail_days": 0,
-    "last_date": "2026-09-11",
+    "last_date": "2026-09-12",
     "valid_10_flag": true
   },
   "connect:118.113.245.106:1080": {
@@ -3079,8 +3079,8 @@
   },
   "connect:36.111.33.167:13128": {
     "success_days": 0,
-    "fail_days": 1,
-    "last_date": "2026-09-11",
+    "fail_days": 2,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:221.227.115.126:1080": {
@@ -8106,9 +8106,9 @@
     "valid_10_flag": false
   },
   "connect:111.206.4.163:18888": {
-    "success_days": 1,
-    "fail_days": 0,
-    "last_date": "2026-09-11",
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:115.231.107.228:20012": {
@@ -12361,8 +12361,8 @@
   },
   "connect:111.199.234.107:9000": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:115.231.107.228:20193": {
@@ -13525,8 +13525,8 @@
   },
   "socks5:134.175.238.113:1080": {
     "success_days": 0,
-    "fail_days": 7,
-    "last_date": "2026-09-11",
+    "fail_days": 8,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:111.196.31.158:8888": {
@@ -13873,224 +13873,224 @@
   },
   "socks5:221.176.85.235:1080": {
     "success_days": 0,
-    "fail_days": 4,
-    "last_date": "2026-09-11",
+    "fail_days": 5,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:110.188.37.46:1080": {
     "success_days": 0,
-    "fail_days": 4,
-    "last_date": "2026-09-11",
+    "fail_days": 5,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:180.165.49.4:1088": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:49.87.198.210:8989": {
     "success_days": 0,
-    "fail_days": 4,
-    "last_date": "2026-09-11",
+    "fail_days": 5,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:111.192.47.144:8888": {
     "success_days": 0,
-    "fail_days": 4,
-    "last_date": "2026-09-11",
+    "fail_days": 5,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:47.95.206.224:45088": {
     "success_days": 0,
-    "fail_days": 4,
-    "last_date": "2026-09-11",
+    "fail_days": 5,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:221.225.48.64:8989": {
     "success_days": 0,
-    "fail_days": 3,
-    "last_date": "2026-09-11",
+    "fail_days": 4,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:111.177.48.18:9501": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:221.176.85.230:1080": {
     "success_days": 0,
-    "fail_days": 3,
-    "last_date": "2026-09-11",
+    "fail_days": 4,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:222.184.87.127:8989": {
     "success_days": 0,
-    "fail_days": 3,
-    "last_date": "2026-09-11",
+    "fail_days": 4,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:123.121.133.182:8888": {
     "success_days": 0,
-    "fail_days": 3,
-    "last_date": "2026-09-11",
+    "fail_days": 4,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:47.95.206.224:45065": {
     "success_days": 0,
-    "fail_days": 3,
-    "last_date": "2026-09-11",
+    "fail_days": 4,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:61.143.126.202:10086": {
     "success_days": 0,
-    "fail_days": 3,
-    "last_date": "2026-09-11",
+    "fail_days": 4,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:180.105.84.90:8989": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:218.90.167.205:1080": {
-    "success_days": 1,
-    "fail_days": 0,
-    "last_date": "2026-09-11",
+    "success_days": 0,
+    "fail_days": 1,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:49.87.220.47:8989": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:221.225.48.111:8989": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:49.87.0.85:8989": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:49.87.198.74:8989": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:106.110.146.113:8989": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:221.225.48.92:8989": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:49.87.152.64:8989": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:49.87.33.121:8989": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:123.112.240.170:9000": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:171.211.127.8:25344": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:171.211.127.8:25609": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:171.211.127.8:25719": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:171.211.127.8:25849": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:171.211.127.8:26384": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:183.236.232.160:8080": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:36.152.150.242:8081": {
     "success_days": 0,
-    "fail_days": 2,
-    "last_date": "2026-09-11",
+    "fail_days": 3,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks4:106.110.146.164:8989": {
     "success_days": 0,
-    "fail_days": 1,
-    "last_date": "2026-09-11",
+    "fail_days": 2,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:180.125.38.111:8989": {
     "success_days": 0,
-    "fail_days": 1,
-    "last_date": "2026-09-11",
+    "fail_days": 2,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "socks5:45.74.31.42:4815": {
     "success_days": 0,
-    "fail_days": 1,
-    "last_date": "2026-09-11",
+    "fail_days": 2,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:171.211.127.8:25420": {
     "success_days": 0,
-    "fail_days": 1,
-    "last_date": "2026-09-11",
+    "fail_days": 2,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:171.211.127.8:26821": {
     "success_days": 0,
-    "fail_days": 1,
-    "last_date": "2026-09-11",
+    "fail_days": 2,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   },
   "connect:171.211.127.8:27406": {
     "success_days": 0,
-    "fail_days": 1,
-    "last_date": "2026-09-11",
+    "fail_days": 2,
+    "last_date": "2026-09-12",
     "valid_10_flag": false
   }
 }
